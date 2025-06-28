@@ -1,0 +1,288 @@
+﻿
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>OUD | Luxury Arabian Perfumes</title>
+    <link rel="icon" href="Images/LogoWebsite.ico" type="image/x-icon" />
+
+    <meta name="description"
+          content="Discover a luxurious collection of unique OUD perfumes that reflect elegance
+     and distinction. Our website offers the finest OUD scents for an unforgettable fragrance experience." />
+
+    <link rel="stylesheet" href="/Style/bootstrap.min.css" />
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/Style/Perfume.css" />
+    <link rel="stylesheet" href="/Style/animate.css" />
+    <script src="/Script/wow.js"></script>
+    <script>
+        new WOW().init();
+    </script>
+</head>
+
+<body>
+    <header>
+        <!--? header left in Navigation Bar -->
+        <div class="logo">
+            <a href="/Home"><img src="/Images/logoremove.png" alt="" /></a>
+        </div>
+
+        <!--? Hamburger Menu Button -->
+        <button class="hamburger" id="hamburger">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <!--? header center in Navigation Bar -->
+        <nav id="nav-menu">
+            <ul>
+                <li><a href="/Home">Home</a></li>
+                <li> @Html.ActionLink("Products", "Index", "Product")</li>
+                <li><a href="/Home#about">About</a></li>
+                <li><a href="/Home#testimonial-section">Testimonials</a></li>
+                <li>@Html.ActionLink("Contact", "Add", "Contact")</li>
+            </ul>
+        </nav>
+
+        <!--? header right in Navigation Bar -->
+        <div class="header-right">
+
+
+            <div class="header-signup">
+                @Html.Partial("_LoginPartial")
+            </div>
+
+
+
+            <div class="cart-icon" id="cart-header-placeholder">
+                <!-- <a href="" class="cart-link"> -->
+                @if (Session["UserID"] != null)
+                {
+                    Html.RenderAction("GetCartCount", "Cart");
+                }
+                <!-- </a> -->
+            </div>
+        </div>
+    </header>
+
+
+    <div>
+        @RenderBody()
+    </div>
+
+
+    <!--! Footer -->
+    <footer>
+        <div class="footer-top row">
+            <div class="footer-section col-md-3 col-sm-6">
+                <h3>About Us</h3>
+                <ul>
+                    <li>
+                        <a href="http://127.0.0.1:5500/index.html#">Vision & Mission</a>
+                    </li>
+                    <li><a href="http://127.0.0.1:5500/index.html#"> Values</a></li>
+                    <li>
+                        <a href="http://127.0.0.1:5500/index.html#">Founder's Message</a>
+                    </li>
+                    <li><a href="http://127.0.0.1:5500/index.html#"> Partners</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section col-md-3 col-sm-6">
+                <h3>Our Services</h3>
+                <ul>
+                    <li>
+                        <a href="http://127.0.0.1:5500/index.html#">Perfume Delivery</a>
+                    </li>
+                    <li>
+                        <a href="http://127.0.0.1:5500/index.html#">Special Orders</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="footer-section col-md-3 col-sm-6">
+                <h3>Promotions &amp; Events</h3>
+                <ul>
+                    <li>
+                        <a href="http://127.0.0.1:5500/index.html#">Promotional Calendar</a>
+                    </li>
+                    <li>
+                        <a href="http://127.0.0.1:5500/index.html#">Coupons &amp; Gift Vouchers</a>
+                    </li>
+                    <li>
+                        <a href="http://127.0.0.1:5500/index.html#">Deals of the Week</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="footer-section col-md-3 col-sm-6">
+                <h3>Contact Us</h3>
+                <ul>
+                    <li>
+                        <a href="http://127.0.0.1:5500/index.html#">Contact Information</a>
+                    </li>
+                    <li>
+                        <a href="http://127.0.0.1:5500/index.html#">Feedback &amp; Complaints</a>
+                    </li>
+                    <li><a href="http://127.0.0.1:5500/index.html#">Careers</a></li>
+                    <li>
+                        <a href="http://127.0.0.1:5500/index.html#">Return Policy</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="footer-content row">
+                    <div class="footer-logo col-3">
+                        <h2>OUD</h2>
+                    </div>
+
+                    <div class="social-links col-4">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/oud.perfume_?igsh=MTNzanhhamVuMTE0OQ=="
+                           target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+
+                    <div class="col footer-singup">
+                        <div class="coupon-signup">
+                            <h2>Join Our Coupon List</h2>
+                            <p>
+                                Get the best deals and discounts on name brand fragrances and
+                                more.
+                            </p>
+                            <form class="signup-form">
+                                <input type="email" placeholder="Enter your email" required />
+                                <button type="submit">Sign Up</button>
+                            </form>
+                        </div>
+                    </div>
+                    <p class="copyright">&copy; 2023 OUD. All Rights Reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!--!----------------------------------------------------------------------->
+    <!-- !Sidebar Cart -->
+    <div id="cartContainer"></div>
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/Script/bootstrap.bundle.js.map"></script>
+    <script src="~/Script/Perfume.js?<%= DateTime.Now.Ticks %>"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>@ViewBag.Title - My ASP.NET Application</title>
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+
+    </head>
+    <body>
+
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+            <div class="container">
+                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    </ul>
+                     @Html.Partial("_LoginPartial")
+                </div>
+            </div>
+        </nav>
+
+
+
+
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+
+
+
+            <footer>
+                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            </footer>
+        </div>
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+    </body>
+    </html>
+*@

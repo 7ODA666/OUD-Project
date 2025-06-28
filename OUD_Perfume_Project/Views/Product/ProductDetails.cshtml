@@ -1,0 +1,87 @@
+﻿@model OUD_Perfume_Project.Models.tblPerfume
+@{
+    ViewBag.Title = "ProductDetails";
+}
+
+<link href="~/Style/ProductDetails.css" rel="stylesheet" />
+
+
+<div class="space-top"></div>
+<main class="product-details">
+    <div class="container">
+        <div class="product-grid">
+            <!-- Image Gallery -->
+            <div class="product-gallery wow bounceInLeft"
+                 data-wow-duration="1.2s">
+                <div class="main-image">
+                    <img src="/@Model.ImageURL" alt="Perfume" id="main-img" />
+                </div>
+            </div>
+
+            <!-- Product Info -->
+            <div class="product-info wow bounceInRight" data-wow-duration="1.2s ">
+                <h2>@Model.Name</h2>
+
+
+                <div class="price-container">
+                    <span class="price">@Model.Price <span class="pound">LE</span></span>
+                </div>
+
+                <div class="quantity-selection">
+
+                    <h3>Quantity:</h3>
+                    <div class="quantity-control">
+
+                        <button class="qty-btn minus" onclick="decreaseQty()" >
+                            <i class="fas fa-minus"></i>
+                        </button>
+
+                        <input type="number" id="quantity-input"   class="qty-value" value="1" min="1" />
+
+                        <button class="qty-btn plus" onclick="increaseQty()">
+                            <i class="fas fa-plus"></i>
+                        </button>
+
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="add-to-cart add-to-cart-details " id="add-to-cart-details" data-product-id="@Model.PerfumeID"> 
+                        <i class="fas fa-shopping-cart"></i> Add to Cart
+                    </button>
+                </div>
+
+                <div class="delivery-info">
+                    <div class="delivery-option">
+                        <i class="fas fa-truck"></i>
+                        <span>Fast delivery in 2-3 business days</span>
+                    </div>
+                    <div class="delivery-option">
+                        <i class="fas fa-undo"></i>
+                        <span>Free returns within 14 days</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Description -->
+        <div class="product-description-container">
+            <div class="product-description wow bounceInUp"
+                 data-wow-duration="1.2s"
+                 data-wow-delay="0.5s">
+                <h3>Description</h3>
+                <p>
+                    @Model.Description
+                </p>
+
+
+                <h3>Details</h3>
+                <p><strong>Brand:</strong> @Model.Name</p>
+                <p><strong>Size:</strong> @Model.Size ml</p>
+                <p><strong>Origin:</strong> @Model.Origin</p>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script src="~/Script/ProductDetails.js"></script>

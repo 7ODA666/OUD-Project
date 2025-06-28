@@ -1,0 +1,126 @@
+﻿@model OUD_Perfume_Project.Models.ViewModel.ViewHomeDetailsVM
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+<!--! First Home Section -->
+<section class="first-home" id="home">
+    <div class="content">
+        <div class="first-home-content">
+            <h2>Luxury Arabian Oud Perfumes</h2>
+            <p>Experience the rich, woody essence of authentic Oud</p>
+            <a href="#product-section" class="btn">Shop Now</a>
+        </div>
+    </div>
+</section>
+
+<!--! Intro Video Section -->
+<div class="intro-video">
+
+    <img src="/Images/logoremove.png"
+         class="logo wow bounceInLeft"
+         data-wow-duration="1.6s"
+         alt="Oud Logo" />
+
+    <div class="video-wrapper wow bounceInUp" data-wow-duration="2s">
+
+        <video controls autoplay loop muted>
+            <source src="/Videos/OUD PERFUME Intro.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+        </video>
+
+    </div>
+    <img src="/Images/logoremove.png"
+         class="logo wow bounceInRight"
+         data-wow-duration="1.6s"
+         alt="Oud Logo" />
+</div>
+
+
+<!--! Products Section  -->
+<div class="product-section" id="product-section">
+
+    <div class="product-section-container">
+
+        <h2 class="section-title wow bounceInUp" data-wow-duration="1.6s">
+            Our Signature Collection
+        </h2>
+
+        <div class="container wow bounceInUp"
+             data-wow-duration="1.6s"
+             data-wow-delay="0.6s">
+
+            <div class="card-section">
+                @foreach (var product in Model.Products)
+                {
+                    <div class="card product-card"
+                         style="width: 18rem">
+
+                        <img src="/@product.ImageURL"
+                             class="card-img-top card-img"
+                             alt="..." onclick="goToDetails(@product.PerfumeID)" />
+
+                        <div class="card-body">
+                            <h3 class="card-title">@product.Name</h3>
+                            <h5 class="card-price">@product.Price <span class="pound">LE</span></h5>
+
+                            <button class="add-to-cart btn" data-product-id="@product.PerfumeID" data-quantity="1">Add to Cart</button>
+
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--! About Section -->
+<section class="about" id="about">
+    <div class="about-content wow pulse" data-wow-duration="1.5s">
+        <div class="container">
+            <h2 class="section-title">About OUD</h2>
+            <p>
+                Founded in 2020, OUD brings you the finest Arabian perfumes crafted
+                with rare ingredients and traditional methods. Each fragrance tells
+                a story of luxury and heritage.
+            </p>
+            <a href="#" class="btn">Learn More</a>
+        </div>
+    </div>
+</section>
+
+<!--!   testimonial section    -->
+<div class="testimonial-section" id="testimonial-section">
+    <h2 class="wow bounceInUp" data-wow-duration="1.5s">Testimonials</h2>
+
+    <div class="slider-container wow bounceInUp"
+         data-wow-duration="1.5s"
+         data-wow-delay="0.5s">
+        <div class="slider-track" id="sliderTrack">
+
+            @foreach (var testimonial in Model.Testimonials)
+            {
+                <div class="testimonial">
+                    <div class="message">
+                        <span class="quote">“</span>  @testimonial.Message  <span class="quote">”</span>
+                    </div>
+                    <div class="username">@testimonial.Name</div>
+                </div>
+            }
+
+        </div>
+    </div>
+
+    <div class="dots" id="dots"></div>
+</div>
+
+
+
+<script>
+    function goToDetails(id) {
+        window.location.href = '/Product/ProductDetails/' + id;
+    }
+</script>

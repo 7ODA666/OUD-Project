@@ -1,0 +1,162 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f9f5f0;
+  overflow: hidden;
+}
+
+.form-login {
+  width: 100%;
+  padding: 20px;
+}
+
+.form-login .login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login .cont {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  max-width: 900px;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.form-login .left {
+  flex: 1;
+  padding: 30px;
+  background: rgb(233, 210, 181);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.left .logoo-im {
+  width: 75px;
+  margin-bottom: 10px;
+}
+
+.left .perfume-image {
+  width: 100%;
+  max-width: 245px;
+  margin-top: 20px;
+}
+
+.form-login .right {
+  flex: 1;
+  padding: 40px 30px;
+  position:relative;
+}
+
+.form-login .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    text-decoration: none;
+    color: black;
+    font-size: 30px;
+}
+
+.right h2 {
+  margin-bottom: 10px;
+  font-size: 28px;
+}
+
+.right p {
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.input-group {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.input-group .input-text {
+  flex: 1;
+  min-width: 130px;
+}
+
+.text-danger {
+    color: #e80c4d; 
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.input-email, .input-password {
+    width: 100%;
+}
+
+.form-login .input-text {
+  padding: 12px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+
+.form-login button {
+    width: 100%;
+    padding: 12px;
+    background: #007acc;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.form-login button:hover {
+  background: #005fa3;
+}
+
+
+
+
+
+/*  Responsive */
+@media (max-width: 768px) {
+  
+  body {
+    overflow: auto;
+  }
+
+  .login .cont {
+    flex-direction: column;
+  }
+
+  .left,
+  .right {
+    width: 100%;
+  }
+
+  .left {
+    padding: 20px;
+  }
+
+  .right {
+    padding: 25px;
+  }
+
+  .input-group {
+    flex-direction: column;
+  }
+}

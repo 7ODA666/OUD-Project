@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="OUD_PerfumeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="tblCartItem">
+    <Key>
+      <PropertyRef Name="CartItemID" />
+    </Key>
+    <Property Name="CartItemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int32" />
+    <Property Name="PerfumeID" Type="Int32" />
+    <Property Name="Quantity" Type="Int32" />
+    <NavigationProperty Name="tblPerfume" Relationship="Self.FK_tblCartItems_tblPerfumes" FromRole="tblCartItems" ToRole="tblPerfumes" />
+    <NavigationProperty Name="tblUser" Relationship="Self.FK_tblCartItems_tblUsers" FromRole="tblCartItems" ToRole="tblUsers" />
+  </EntityType>
+  <EntityType Name="tblOrderDetail">
+    <Key>
+      <PropertyRef Name="OrderDetailID" />
+    </Key>
+    <Property Name="OrderDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrderID" Type="Int32" />
+    <Property Name="PerfumeID" Type="Int32" />
+    <Property Name="Quantity" Type="Int32" />
+    <Property Name="UnitPrice" Type="Decimal" Precision="10" Scale="2" />
+    <NavigationProperty Name="tblOrder" Relationship="Self.FK_tblOrderDetails_tblOrders" FromRole="tblOrderDetails" ToRole="tblOrders" />
+    <NavigationProperty Name="tblPerfume" Relationship="Self.FK_tblOrderDetails_tblPerfumes" FromRole="tblOrderDetails" ToRole="tblPerfumes" />
+  </EntityType>
+  <EntityType Name="tblOrder">
+    <Key>
+      <PropertyRef Name="OrderID" />
+    </Key>
+    <Property Name="OrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int32" />
+    <Property Name="TotalPrice" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="OrderDate" Type="DateTime" Precision="3" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblOrderDetails" Relationship="Self.FK_tblOrderDetails_tblOrders" FromRole="tblOrders" ToRole="tblOrderDetails" />
+    <NavigationProperty Name="tblUser" Relationship="Self.FK_tblOrders_tblUsers" FromRole="tblOrders" ToRole="tblUsers" />
+  </EntityType>
+  <EntityType Name="tblPerfume">
+    <Key>
+      <PropertyRef Name="PerfumeID" />
+    </Key>
+    <Property Name="PerfumeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Price" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="Discount" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="ImageURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Origin" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Size" Type="Int32" />
+    <NavigationProperty Name="tblCartItems" Relationship="Self.FK_tblCartItems_tblPerfumes" FromRole="tblPerfumes" ToRole="tblCartItems" />
+    <NavigationProperty Name="tblOrderDetails" Relationship="Self.FK_tblOrderDetails_tblPerfumes" FromRole="tblPerfumes" ToRole="tblOrderDetails" />
+  </EntityType>
+  <EntityType Name="tblUser">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblCartItems" Relationship="Self.FK_tblCartItems_tblUsers" FromRole="tblUsers" ToRole="tblCartItems" />
+    <NavigationProperty Name="tblOrders" Relationship="Self.FK_tblOrders_tblUsers" FromRole="tblUsers" ToRole="tblOrders" />
+  </EntityType>
+  <Association Name="FK_tblCartItems_tblPerfumes">
+    <End Role="tblPerfumes" Type="Self.tblPerfume" Multiplicity="0..1" />
+    <End Role="tblCartItems" Type="Self.tblCartItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblPerfumes">
+        <PropertyRef Name="PerfumeID" />
+      </Principal>
+      <Dependent Role="tblCartItems">
+        <PropertyRef Name="PerfumeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblCartItems_tblUsers">
+    <End Role="tblUsers" Type="Self.tblUser" Multiplicity="0..1" />
+    <End Role="tblCartItems" Type="Self.tblCartItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUsers">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="tblCartItems">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblOrderDetails_tblOrders">
+    <End Role="tblOrders" Type="Self.tblOrder" Multiplicity="0..1" />
+    <End Role="tblOrderDetails" Type="Self.tblOrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblOrders">
+        <PropertyRef Name="OrderID" />
+      </Principal>
+      <Dependent Role="tblOrderDetails">
+        <PropertyRef Name="OrderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblOrderDetails_tblPerfumes">
+    <End Role="tblPerfumes" Type="Self.tblPerfume" Multiplicity="0..1" />
+    <End Role="tblOrderDetails" Type="Self.tblOrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblPerfumes">
+        <PropertyRef Name="PerfumeID" />
+      </Principal>
+      <Dependent Role="tblOrderDetails">
+        <PropertyRef Name="PerfumeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblOrders_tblUsers">
+    <End Role="tblUsers" Type="Self.tblUser" Multiplicity="0..1" />
+    <End Role="tblOrders" Type="Self.tblOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUsers">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="tblOrders">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="OUD_PerfumeDB" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="tblCartItems" EntityType="Self.tblCartItem" />
+    <EntitySet Name="tblOrderDetails" EntityType="Self.tblOrderDetail" />
+    <EntitySet Name="tblOrders" EntityType="Self.tblOrder" />
+    <EntitySet Name="tblPerfumes" EntityType="Self.tblPerfume" />
+    <EntitySet Name="tblUsers" EntityType="Self.tblUser" />
+    <AssociationSet Name="FK_tblCartItems_tblPerfumes" Association="Self.FK_tblCartItems_tblPerfumes">
+      <End Role="tblPerfumes" EntitySet="tblPerfumes" />
+      <End Role="tblCartItems" EntitySet="tblCartItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblCartItems_tblUsers" Association="Self.FK_tblCartItems_tblUsers">
+      <End Role="tblUsers" EntitySet="tblUsers" />
+      <End Role="tblCartItems" EntitySet="tblCartItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblOrderDetails_tblOrders" Association="Self.FK_tblOrderDetails_tblOrders">
+      <End Role="tblOrders" EntitySet="tblOrders" />
+      <End Role="tblOrderDetails" EntitySet="tblOrderDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblOrderDetails_tblPerfumes" Association="Self.FK_tblOrderDetails_tblPerfumes">
+      <End Role="tblPerfumes" EntitySet="tblPerfumes" />
+      <End Role="tblOrderDetails" EntitySet="tblOrderDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblOrders_tblUsers" Association="Self.FK_tblOrders_tblUsers">
+      <End Role="tblUsers" EntitySet="tblUsers" />
+      <End Role="tblOrders" EntitySet="tblOrders" />
+    </AssociationSet>
+    <EntitySet Name="tblTestimonials" EntityType="OUD_PerfumeModel.tblTestimonial" />
+  </EntityContainer>
+  <EntityType Name="tblTestimonial">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+</Schema>

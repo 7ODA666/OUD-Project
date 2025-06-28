@@ -1,0 +1,257 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #f9f5f0;
+  color: #333;
+  line-height: 1.6;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+  margin-top: 50px;
+}
+
+/* Header */
+.profile-header {
+  background-color: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 15px 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.profile-header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.back-btn {
+  color: #8e6c4d;
+  text-decoration: none;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.back-btn i {
+  font-size: 14px;
+}
+
+.profile-header h1 {
+  font-size: 20px;
+  color: #8e6c4d;
+}
+
+/* Profile Container */
+.profile-container {
+  padding: 30px 0;
+}
+
+/* User Info Section */
+.user-info {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.user-avatar img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #8e6c4d;
+}
+
+.user-details h2 {
+  font-size: 24px;
+  margin-bottom: 5px;
+  color: #212121;
+}
+
+.user-email {
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.edit-profile {
+  padding: 8px 20px;
+  background-color: white;
+  color: #8e6c4d;
+  border: 1px solid #8e6c4d;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.edit-profile:hover {
+  background-color: #8e6c4d;
+  color: white;
+}
+
+/* Order History Section */
+.order-history h3 {
+  color: #8e6c4d;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.order-card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.order-id {
+  font-weight: 600;
+  color: #8e6c4d;
+}
+
+.order-date {
+  color: #666;
+}
+
+.order-status {
+  background-color: #8e6c4d;
+  color: white;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+}
+
+.order-products {
+  padding: 15px 20px;
+}
+
+.product-item {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.product-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.product-item img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.product-info h4 {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.product-info p {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.product-price {
+  font-weight: 600;
+  color: #8e6c4d;
+}
+
+.order-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  border-top: 1px solid #e0e0e0;
+  background-color: #f9f9f9;
+}
+
+.order-total {
+  font-weight: 600;
+}
+
+.order-total span:last-child {
+  color: #8e6c4d;
+  margin-left: 10px;
+}
+
+
+/* Footer */
+.profile-footer {
+  background-color: #212121;
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+  margin-top: 50px;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .user-info {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .order-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+
+  .order-footer {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+}
+
+@media (max-width: 576px) {
+  .user-avatar img {
+    width: 120px;
+    height: 120px;
+  }
+
+  .product-item {
+    flex-direction: column;
+  }
+
+  .product-item img {
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+  }
+}

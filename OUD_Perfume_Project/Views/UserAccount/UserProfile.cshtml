@@ -1,0 +1,82 @@
+﻿@model  OUD_Perfume_Project.Models.ViewModel.OrderAndUserDetails
+
+@{
+    ViewBag.Title = "UserProfile";
+}
+<link href="~/Style/Profile.css" rel="stylesheet" />
+
+<main class="profile-container">
+    <div class="container">
+
+        <section class="user-info wow flipInX" data-wow-duration="1.5s">
+            <div class="user-avatar">
+                <img src="/Images/UserImage/defualtProfileImage.jpg"
+                     alt="User Avatar" />
+            </div>
+
+            <div class="user-details">
+                <h2>@Model.user.FirstName @Model.user.LastName</h2>
+                <p class="user-email">@Model.user.Email</p>
+            </div>
+        </section>
+
+        <!-- Order History Section -->
+        <section class="order-history">
+            <h3 class="wow bounceInUp"
+                data-wow-duration="1.5s"
+                data-wow-delay="0.1s">
+                Order History
+            </h3>
+
+            @foreach (var order in Model.orders)
+            {
+
+                <!-- Order Card 1 -->
+                <div class="order-card wow bounceInUp"
+                     data-wow-duration="1.5s"
+                     data-wow-delay="0.5s">
+                    <div class="order-header">
+                        <span class="order-id">Order #@order.OrderID</span>
+                        <span class="order-date">@order.OrderDate</span>
+                        <span class="order-status">Delivered</span>
+                    </div>
+
+                    <div class="order-products">
+                        @foreach (var orderDetails in order.tblOrderDetails)
+                        {
+
+                            <div class="product-item">
+
+                                <img src="/@orderDetails.tblPerfume.ImageURL" alt="Product" />
+
+                                <div class="product-info">
+
+                                    <h4>@orderDetails.tblPerfume.Name</h4>
+                                    <p>@orderDetails.tblPerfume.Size  ml</p>
+                                    <p class="product-price">@orderDetails.UnitPrice <span class="pound">LE</span> x @orderDetails.Quantity</p>
+
+                                </div>
+                            </div>
+
+                        }
+                    </div>
+
+
+
+                    <div class="order-footer">
+                        <div class="order-total">
+                            <span>Total:</span>
+                            <span>@order.TotalPrice <span class="pound">LE</span></span>
+                        </div>
+                    </div>
+                </div>
+
+            }
+
+
+
+
+
+        </section>
+    </div>
+</main>

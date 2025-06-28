@@ -1,0 +1,49 @@
+﻿@model IEnumerable<OUD_Perfume_Project.Models.tblCartItem>
+
+
+
+<!-- !Sidebar Cart -->
+<div class="cart-sidebar" id="cartSidebar">
+
+    <span class="close-cart" onclick="closeCart()">❌</span>
+    <h3>Your Cart</h3>
+
+    <div class="cart-items">
+
+        @{
+            var TotalPrice = Convert.ToDecimal(Session["TotalPrice"]);
+        }
+
+        <!-- Product 1 -->
+        @foreach (var cartitem in Model)
+        {
+            <div class="cart-item">
+                <img src="/@cartitem.tblPerfume.ImageURL" alt="Black Oud" />
+
+                <div class="cart-item-details">
+                    <h6>@cartitem.tblPerfume.Name</h6>
+                    <span>@cartitem.tblPerfume.Price <span class="pound">LE</span> × @cartitem.Quantity</span>
+                </div>
+            </div>
+            TotalPrice += (decimal)(cartitem.tblPerfume.Price * cartitem.Quantity);
+        }
+
+
+    </div>
+
+    @{
+        var Tax = TotalPrice * 0.1M;
+        Session["TotalPrice"] = TotalPrice + Tax;
+    }
+
+    <div class="cart-footer">
+        <strong>Total: @Session["TotalPrice"] <span class="pound">LE</span></strong>
+        <a href="/Cart" style="text-decoration:none">
+            <button class="checkout-btn">Checkout</button>
+        </a>
+        <a href="@Url.Action("Index","Cart")" class="products-link">View All Products</a>
+    </div>
+</div>
+
+
+<div id="overlay" class="overlay" onclick="closeCart()"></div>

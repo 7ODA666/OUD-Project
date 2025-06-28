@@ -1,0 +1,97 @@
+﻿
+@model OUD_Perfume_Project.Models.ViewModel.ViewCartAndDeliveryInfoVM
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<link href="~/Style/cart.css" rel="stylesheet" />
+
+<div class="cart-container">
+
+    <div class="cart-header-container">
+        <div class="cart-header">
+            <h1>Your Shopping Cart</h1>
+            <p>Review your items before checkout</p>
+        </div>
+    </div>
+
+
+    <div class="cart-items">
+
+        @{
+            var TotalPrice = Convert.ToDecimal(Session["TotalPrice"]);
+        }
+
+
+
+        @foreach (var cartitem in Model.UserCartItem)
+        {
+            <div class="cart-item">
+
+                <img src="/@cartitem.tblPerfume.ImageURL" alt="..." class="cart-item-img" />
+                <div class="cart-item-details">
+                    <h3>@cartitem.tblPerfume.Name</h3>
+                    <p>@cartitem.tblPerfume.Size ml</p>
+                    <a href="/Cart/Delete/@cartitem.CartItemID" class="remove-item">
+                        <i class="fas fa-trash-alt"></i>
+                    </a>
+                </div>
+                <div class="cart-item-price">@cartitem.tblPerfume.Price <span class="pound">LE</span></div>
+                <div class="quantity-selector">
+                    <a href="/Cart/Decrement/@cartitem.CartItemID" class="decrement">-</a>
+                    <input type="text" value="@cartitem.Quantity" class="quantity" />
+                    <a href="/Cart/Increment/@cartitem.CartItemID" class="increment">+</a>
+                </div>
+            </div>
+
+            TotalPrice += (decimal)(cartitem.tblPerfume.Price * cartitem.Quantity);
+        }
+
+    </div>
+</div>
+
+
+@{
+    var Tax = TotalPrice * 0.1M;
+    Session["TotalPrice"] = TotalPrice + Tax;
+}
+
+
+<div class="cart-summary-container">
+    <div class="cart-summary wow bounceInUp" data-wow-duration="1.5s">
+        <div class="summary-row">
+            <span>Subtotal</span>
+            <span>@TotalPrice <span class="pound">LE</span></span>
+        </div>
+
+        <div class="summary-row">
+            <span>Shipping</span>
+            <span>Free</span>
+        </div>
+
+        <div class="summary-row">
+            <span>Tax</span>
+            <span>@Tax <span class="pound">LE</span></span>
+        </div>
+
+        <div class="summary-row total">
+            <span>Total</span>
+            <span>@Session["TotalPrice"] <span class="pound">LE</span></span>
+        </div>
+
+
+        <form action="Cart/Checkout" method="post" class="form-inputs">
+            <input type="text" name="InfoContact.PhoneContact" placeholder="Contact Number" required min="11" />
+            <input type="text" name="InfoContact.Address" placeholder="Shipping Address" required />
+            <button class="checkout-btn" type="submit">PROCEED TO CHECKOUT</button>
+        </form>
+
+
+
+        <div class="continue-shopping">
+            <a href="/Home/Index">← Continue Shopping</a>
+        </div>
+    </div>
+</div>
+

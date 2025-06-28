@@ -1,0 +1,19 @@
+﻿@* navbar-right *@
+
+
+@if (Session["UserID"] != null)
+{
+    <div class="user-dropdown" id="userDropdown">
+        <div class="user-dropdown-toggle Log" onclick="toggleDropdown()">
+            @Session["UserName"]  <span class="icon-dropdown">&#9662;</span>
+        </div>
+        <div class="user-dropdown-menu">
+            <a href="@Url.Action("UserProfile","UserAccount")">Profile</a>
+            <a href="@Url.Action("Logout", "UserAccount")"><span class="logout">Logout</span></a>
+        </div>
+    </div>
+}
+else
+{
+        @Html.ActionLink("Login", "Login", "UserAccount", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "Log" })
+}

@@ -1,0 +1,146 @@
+﻿@model OUD_Perfume_Project.Models.RegisterViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up</title>
+    <link rel="icon" href="/Images/LogoWebsite.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="/Style/Sign.css" />
+    <link rel="stylesheet" href="/Style/animate.css" />
+    <script src="/Script/wow.js"></script>
+    <script>
+        new WOW().init();
+    </script>
+</head>
+
+<body>
+
+
+
+    <!--! Form Sign Up-->
+    <div class="form-login wow flipInX"
+         data-wow-duration="1.6s"
+         id="form-login">
+
+        <div class="login">
+
+            <div class="cont">
+
+                <div class="left">
+                    <a href="@Url.Action("Index","Home")">
+                        <img src="/Images/logoremovedarck.png"
+                             alt="logooo"
+                             class="logoo-im" />
+                    </a>
+
+                    <img src="/Images/perfume.png"
+                         alt="Perfume Bottle"
+                         class="perfume-image" />
+                </div>
+
+                <div class="right">
+                    @Html.ActionLink("×", "Index", "Home",new {area=""} , new { @class = "close" })
+
+
+                    <h2>Register</h2>
+                    <p>
+                        Create your personalized account to explore our exclusive
+                        fragrances seamlessly
+                    </p>
+
+
+
+                    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary("", new { @class = "text-danger" })
+
+                        <div class="input-group">
+                            <input type="text" placeholder="First name" required />
+                            <input type="text" placeholder="Last name" required />
+                        </div>
+                        @Html.TextBoxFor(m => m.Email, new { @class = "input-email", placeholder = "Email" })
+                        @Html.PasswordFor(m => m.Password, new { @class = "input-password", placeholder = "Password" })
+                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "input-password", placeholder = "Confirm Password" })
+                        <button type="submit">Create account</button>
+                    }
+
+
+
+
+                    <p>Already have an account? @Html.ActionLink("Login", "Login", "Account")</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*
+    <main aria-labelledby="title">
+        <h2 id="title">@ViewBag.Title.</h2>
+
+        @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+
+            @Html.ValidationSummary("", new { @class = "text-danger" })
+            <div class="row">
+                @Html.LabelFor(m => m.Email, new { @class = "col-md-2 col-form-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="row">
+                @Html.LabelFor(m => m.Password, new { @class = "col-md-2 col-form-label" })
+                <div class="col-md-10">
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="row">
+                @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 col-form-label" })
+                <div class="col-md-10">
+                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="offset-md-2 col-md-10">
+                    <input type="submit" value="Register" class="btn btn-outline-dark" />
+                </div>
+            </div>
+        }
+    </main>*@
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
